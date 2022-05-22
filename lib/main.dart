@@ -43,16 +43,62 @@ class MyHomePage extends StatelessWidget {
     body: Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const <Widget> [
-        SizedBox(
+      children:  <Widget> [
+        const SizedBox(
           width: double.infinity,
           child: Card(
             color: Colors.blue,
             child: Text('Gráfico'),
           ),
         ),
-          Card(
-            child: Text('Lista de Transações'),
+          Column(
+            children: _transactions.map((tx) {
+              return Card(
+                child: Row(
+                  children: <Widget> [
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.purple,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        'R\$ ${tx.value.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple,
+                        ),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget> [
+                        Text(
+                          tx.title,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          tx.date.toString(),
+                          style: const TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
       )
