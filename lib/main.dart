@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import 'models/transaction.dart';
 
 main() => runApp(const ExpensesApp());
@@ -36,12 +36,21 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+      final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+      primary: Colors.purple,
+      minimumSize: const Size(88, 44),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(2.0)),
+      ),
+      backgroundColor: Colors.blue,
+    );
+
   return Scaffold(
     appBar: AppBar(
       title: const Text('Despesas Pessoais'),
     ),
     body: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children:  <Widget> [
         const SizedBox(
@@ -88,7 +97,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat('d MMM y').format(tx.date),
                           style: const TextStyle(
                             color: Colors.grey,
                           ),
@@ -100,6 +109,33 @@ class MyHomePage extends StatelessWidget {
               );
             }).toList(),
           ),
+            Card(
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children:  <Widget> [
+                    const TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Nova Transação'
+                      ),
+                    ),
+                    const TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Valor em R\$'
+                      ),
+                    ),
+                    TextButton(
+                      style: flatButtonStyle,
+                      onPressed: () {
+                        print('Button pressed');
+                      },
+                      child: const Text('Nova Transação'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
         ],
       )
     );
