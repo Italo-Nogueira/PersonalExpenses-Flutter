@@ -40,8 +40,6 @@ class _TransactionUserState extends State<TransactionUser> {
     setState(() {
       _transactions.add(newTransaction);
     });
-
-    Navigator.of(context).pop();
   }
   
   @override
@@ -49,7 +47,7 @@ class _TransactionUserState extends State<TransactionUser> {
     return Column(
       children: <Widget>[
         TransactionList(transactions: _transactions),
-        TransactionForm(),
+        TransactionForm(onSubmit: _addTransactions)
       ],
     );
   }
