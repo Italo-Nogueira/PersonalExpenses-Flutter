@@ -12,7 +12,6 @@ class TransactionForm extends StatefulWidget {
 
 class _TransactionFormState extends State<TransactionForm> {
   final titleController = TextEditingController();
-
   final valueController = TextEditingController();
 
   _submitForm() {
@@ -27,7 +26,7 @@ class _TransactionFormState extends State<TransactionForm> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     final ButtonStyle flatButtonStyle = TextButton.styleFrom(
       primary: Colors.purple,
       minimumSize: const Size(88, 44),
