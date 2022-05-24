@@ -12,7 +12,25 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 300,
-      child: ListView.builder(
+      child: transactions.isEmpty? Column(
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Text('Nenhuma transação cadastrada!',
+              style: Theme.of(context).textTheme.headline6,
+          ),
+           const SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            height: 200,
+            child: Image.asset('assets/images/waiting.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
+      ) : ListView.builder(
         itemCount: transactions.length,
         itemBuilder: (context, index) {
           final transaction = transactions[index];
@@ -26,7 +44,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                       width: 2,
                     ),
                   ),
@@ -36,7 +54,7 @@ class TransactionList extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ),
